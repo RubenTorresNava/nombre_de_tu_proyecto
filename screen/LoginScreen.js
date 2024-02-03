@@ -5,11 +5,13 @@ import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [error, setError] = useState(null);
   const handleLogin = () => {
-    console.log('Email:', email);
-    console.log('Password:', password);
-    navigation.navigate('MainScreen');
+    if (email === 'usuario@example.com' && password === 'contraseña') {
+      navigation.navigate('MainScreen');
+    } else {
+      setError('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+    }
   };
 
   return (
@@ -30,6 +32,7 @@ function LoginScreen({ navigation }) {
           onChangeText={(text) => setPassword(text)}
         />
         <View style={styles.solidButton}>
+          {error && <Text style={styles.error}>{error}</Text>}
           <Button title="Iniciar sesión" color="grey" onPress={handleLogin}></Button>
         </View>
         <Text style={styles.registro}>¿No tienes cuenta? Registrate</Text>
