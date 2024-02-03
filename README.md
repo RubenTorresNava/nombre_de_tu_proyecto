@@ -27,3 +27,7 @@ Iniciar el servidor
 
 
 ## Screenshots
+![image](https://github.com/RubenTorresNava/nombre_de_tu_proyecto/assets/128828516/c510e352-e2c0-4892-adab-71a1b70c61b4)
+
+![image](https://github.com/RubenTorresNava/nombre_de_tu_proyecto/assets/128828516/d1fc52f7-920e-4eef-a996-45c510a2480e)
+
