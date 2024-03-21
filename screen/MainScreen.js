@@ -1,51 +1,37 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
+import axios from 'axios';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#C71212',
-  },
-  titulo: {
-    fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 22,
-    fontSize: 32,
-  },
-  productos: {
-    backgroundColor: 'white',
-    padding: 25,
-    borderRadius: 5,
-    marginBottom: 10,
-    width: 300,
-    height: 75,
-  },
-  vista: {
-    margin: 10,
-    fontSize: 22,
-  },
-});
+const App = () => {
+  const [datos, setDatos] = useState([]);
 
-function MainScreen() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/mitiendita');
+        console.log(response.data);
+
+        setDatos(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>Bienvenido</Text>
-      <Text style={styles.vista}>Recomendaciones</Text>
-      <View style={styles.productos}>
-        <Text>Recomendaciones</Text>
-      </View>
-      <Text style={styles.vista}>Recomendaciones</Text>
-      <View style={styles.productos}>
-        <Text>Ofertas</Text>
-      </View>
-      <Text style={styles.vista}>Recomendaciones</Text>
-      <View style={styles.productos}>
-        <Text>Ultimo que viste</Text>
-      </View>
+    <View>
+      {datos.map((producto, index) => (
+        <View key={index}>
+          <Text>Nombre: {producto.nombre}</Text>
+          <Text>Precio: {producto.precio}</Text>
+          <Text>Descripción: {producto.descripcion}</Text>
+          <Text>Categoría: {producto.categoria}</Text>
+        </View>
+      ))}
     </View>
   );
-}
+  
+};
 
-export default MainScreen;
+export default App;
