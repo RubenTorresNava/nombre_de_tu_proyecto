@@ -31,7 +31,9 @@ const App = () => {
       ))}
     </View>
   );
-  
 };
+
+//estilos
+
 
 export default App;
